@@ -7,6 +7,8 @@ const toProp = (propName) => o => o[propName]
 const zip = (...lists) => _zip(lists, lists => min(lists.map(toProp('length'))))
 const zipLongest = (...lists) => _zip(lists, lists => max(lists.map(toProp('length'))))
 
+const cMap = fn => seq => seq.map(fn) 
+
 function _zip(lists, lengthFn) {
   let n = lengthFn(lists)
   let r = []
@@ -18,4 +20,18 @@ function _zip(lists, lengthFn) {
     r.push(_r)
   }
   return r
+}
+
+function compose(...fns) {
+
+  return function(arg) {
+
+    for(let n = fns.length - 1; n >= 0; n--) {
+      arg = fns[n](arg)
+    }
+
+    return arg
+
+  }
+
 }
