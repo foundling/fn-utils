@@ -1,0 +1,23 @@
+{
+  "name": "fnutils",
+  "version": "1.0.0",
+  "description": "Function utility library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'tests forthcoming!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foundling/fnutils.git"
+  },
+  "keywords": [
+    "utilities",
+    "functions"
+  ],
+  "author": "Alex Ramsdell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foundling/fnutils/issues"
+  },
+  "homepage": "https://github.com/foundling/fnutils#readme"
+}
