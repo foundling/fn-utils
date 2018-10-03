@@ -9,17 +9,16 @@ const toPropsSafe = propNames => o => propNames.reduce((result, prop) => result.
 
 const zip = (...lists) => _zip(lists, lists => minimum(lists.map(toProp('length'))))
 const zipLongest = (...lists) => _zip(lists, lists => maximum(lists.map(toProp('length'))))
+const id = (x) => x
 
 const map = fn => seq => seq.map(fn)
-const repeat = (value, count) => {
+const repeat = (value, count, constructor=id) => {
+
   if (!count) return []
 
-  let results = Array(count);
-  while (count-- > 0) {
-    results[count] = value
-  }
+  return [...Array(count).keys()]
+    .map(() => constructor(value))
 
-  return results
 }
 
 
