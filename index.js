@@ -1,13 +1,27 @@
-const max = items => items.reduce((max, n) => max >= n ? max : n, -Infinity)
-const min = items => items.reduce((min, n) => min <= n ? min : n, Infinity)
+const maximum = items => items.reduce((maximum, n) => maximum >= n ? maximum : n, -Infinity)
+const minimum = items => items.reduce((minimum, n) => minimum <= n ? minimum : n, Infinity)
 
 const toPropSafe = (propName) => o => o.hasOwnProperyName(propName) ? o[prop] : null
 const toProp = (propName) => o => o[propName]
 
-const zip = (...lists) => _zip(lists, lists => min(lists.map(toProp('length'))))
-const zipLongest = (...lists) => _zip(lists, lists => max(lists.map(toProp('length'))))
+const toProps = propNames => o => propNames.reduce((result, prop) => (result[prop] = o[prop], result),{})
+const toPropsSafe = propNames => o => propNames.reduce((result, prop) => result.hasOwnProperty(prop) ? (result[prop] = o[prop], result) : null,{})
 
-const cMap = fn => seq => seq.map(fn) 
+const zip = (...lists) => _zip(lists, lists => minimum(lists.map(toProp('length'))))
+const zipLongest = (...lists) => _zip(lists, lists => maximum(lists.map(toProp('length'))))
+
+const map = fn => seq => seq.map(fn)
+const repeat = (value, count) => {
+  if (!count) return []
+
+  let results = Array(count);
+  while (count-- > 0) {
+    results[count] = value
+  }
+
+  return results
+}
+
 
 function _zip(lists, lengthFn) {
   let n = lengthFn(lists)
@@ -34,4 +48,18 @@ function compose(...fns) {
 
   }
 
+}
+
+module.exports = exports = {
+  compose,
+  map,
+  maximum,
+  minimum,
+  repeat,
+  toProp,
+  toPropSafe,
+  toProps,
+  toPropsSafe,
+  zip,
+  zipLongest
 }
