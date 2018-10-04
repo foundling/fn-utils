@@ -17,7 +17,7 @@ const repeat = (value, count, constructor=id) => {
   if (!count) return []
 
   return [...Array(count).keys()]
-    .map(() => constructor(value))
+    .map((item, index) => constructor(value, index))
 
 }
 
@@ -49,7 +49,7 @@ function compose(...fns) {
 
 }
 
-module.exports = exports = {
+const fnutils = {
   compose,
   map,
   maximum,
@@ -62,3 +62,6 @@ module.exports = exports = {
   zip,
   zipLongest
 }
+
+//module.exports = exports = fnutils
+export default fnutils
