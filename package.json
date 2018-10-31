@@ -1,5 +1,5 @@
 {
-  "name": "fnutils",
+  "name": "fn-utils",
   "version": "1.0.0",
   "description": "Function utility library",
   "main": "index.js",
